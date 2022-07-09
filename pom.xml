@@ -27,6 +27,19 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+            <groupId>com.github.tivrfoa</groupId>
+            <artifactId>mapresultset</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tivrfoa</groupId>
+            <artifactId>mapresultset-processor</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+
+		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -40,6 +53,42 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <executions>
+			        <execution>
+			            <id>process-annotations</id>
+			            <phase>generate-sources</phase>
+			            <goals>
+			                <goal>compile</goal>
+			            </goals>
+			            <configuration>
+			            	<failOnError>false</failOnError>
+			                <compilerArgs>
+			                    <arg>-proc:only</arg>
+			                    <arg>-implicit:none</arg>
+			                    <arg>-processor</arg>
+			                    <arg>com.github.tivrfoa.mapresultset.MappingProcessor</arg>
+			                </compilerArgs>
+			            </configuration>
+			        </execution>
+			        <execution>
+			            <id>default-compile</id>
+			            <phase>compile</phase>
+			            <goals>
+			                <goal>compile</goal>
+			            </goals>
+			            <configuration>
+			                <compilerArgs>
+			                    <arg>-proc:none</arg>
+			                </compilerArgs>
+			            </configuration>
+			        </execution>
+			    </executions>
+            </plugin>
 		</plugins>
 	</build>
 

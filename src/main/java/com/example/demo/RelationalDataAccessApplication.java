@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.github.tivrfoa.mapresultset.api.Query;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +28,11 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
 
   @Autowired
   JdbcTemplate jdbcTemplate;
+
+  @Query
+  final String listByFirstName = """
+        SELECT id, first_name, last_name FROM customers WHERE first_name = ?
+        """;
 
   @Override
   public void run(String... strings) throws Exception {
@@ -54,9 +61,6 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
     ).forEach(customer -> log.info(customer.toString()));
 
 
-    final String listByFirstName = """
-        SELECT id, first_name, last_name FROM customers WHERE first_name = ?
-        """;
     Connection connection = jdbcTemplate.getDataSource().getConnection();
     PreparedStatement preparedStatement = connection.prepareStatement(listByFirstName);
     preparedStatement.setString(1, "Josh");
