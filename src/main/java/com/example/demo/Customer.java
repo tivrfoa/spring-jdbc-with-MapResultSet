@@ -1,11 +1,14 @@
 package com.example.demo;
 
+import com.github.tivrfoa.mapresultset.api.Column;
 import com.github.tivrfoa.mapresultset.api.Table;
 
 @Table (name = "customers")
 public class Customer {
     private long id;
+    @Column (name = "first_name")
     private String firstName;
+    @Column (name = "last_name")
     private String lastName;
 
     public Customer(long id, String firstName, String lastName) {
