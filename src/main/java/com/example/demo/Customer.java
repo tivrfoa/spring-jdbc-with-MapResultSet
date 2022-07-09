@@ -17,6 +17,9 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    public Customer() {
+    }
+
     public long getId() {
         return id;
     }
