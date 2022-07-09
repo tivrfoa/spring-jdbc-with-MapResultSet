@@ -31,7 +31,9 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
 
   @Query
   final String listByFirstName = """
-        SELECT id, first_name, last_name FROM customers WHERE first_name = ?
+        SELECT id, first_name, last_name
+        FROM customers
+        WHERE first_name = ?
         """;
 
   @Override
@@ -61,17 +63,12 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
     ).forEach(customer -> log.info(customer.toString()));
 
 
+    System.out.println("-------------  Using MapResultSet ----------------------");
+
     Connection connection = jdbcTemplate.getDataSource().getConnection();
     PreparedStatement preparedStatement = connection.prepareStatement(listByFirstName);
     preparedStatement.setString(1, "Josh");
     ResultSet resultSet = preparedStatement.executeQuery();
-    while(resultSet.next())
-				System.out.println(resultSet.getInt(1) + "  " + resultSet.getString(2) +
-          " " + resultSet.getString(3));
-
-    System.out.println("-----------------------------------");
-    System.out.println("Using MapResultSet");
-    resultSet = preparedStatement.executeQuery();
     List<Customer> customers = MapResultSet.listByFirstName(resultSet);
     System.out.println(customers);
 
