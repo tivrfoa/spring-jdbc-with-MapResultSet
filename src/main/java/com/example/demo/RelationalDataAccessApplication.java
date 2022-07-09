@@ -71,7 +71,7 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
 
     System.out.println("-----------------------------------");
     System.out.println("Using MapResultSet");
-    resultSet.beforeFirst();
+    resultSet = preparedStatement.executeQuery();
     List<Customer> customers = MapResultSet.listByFirstName(resultSet);
     System.out.println(customers);
 
