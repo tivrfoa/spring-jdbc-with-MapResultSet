@@ -60,8 +60,10 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
     Connection connection = jdbcTemplate.getDataSource().getConnection();
     PreparedStatement preparedStatement = connection.prepareStatement(listByFirstName);
     preparedStatement.setString(1, "Josh");
-    ResultSet executeQuery = preparedStatement.executeQuery();
-    
+    ResultSet resultSet = preparedStatement.executeQuery();
+    while(resultSet.next())
+				System.out.println(resultSet.getInt(1) + "  " + resultSet.getString(2) +
+          " " + resultSet.getString(3));
 
   }
 }
