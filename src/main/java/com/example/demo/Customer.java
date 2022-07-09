@@ -1,8 +1,12 @@
 package com.example.demo;
 
+import com.github.tivrfoa.mapresultset.api.Table;
+
+@Table (name = "customers")
 public class Customer {
     private long id;
-    private String firstName, lastName;
+    private String firstName;
+    private String lastName;
 
     public Customer(long id, String firstName, String lastName) {
         this.id = id;
