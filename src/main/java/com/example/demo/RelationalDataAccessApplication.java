@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.github.tivrfoa.mapresultset.api.Query;
+import io.github.tivrfoa.mapresultset.api.Query;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

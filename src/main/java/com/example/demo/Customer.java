@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.github.tivrfoa.mapresultset.api.Column;
-import com.github.tivrfoa.mapresultset.api.Table;
+import io.github.tivrfoa.mapresultset.api.Column;
+import io.github.tivrfoa.mapresultset.api.Table;
 
 @Table (name = "customers")
 public class Customer {
